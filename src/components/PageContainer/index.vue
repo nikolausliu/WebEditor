@@ -12,8 +12,8 @@ export default {
 
 <style lang="less" scoped>
 .page-container {
-  width: 320px;
-  // min-height: 486px;
+  // width: 320px;
+  width: 375px;
   border: 1px dashed #ccc;
   background: #fff;
 }

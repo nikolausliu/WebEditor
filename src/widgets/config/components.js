@@ -8,6 +8,7 @@ export default [
       { name: '辅助空白', componentsName: 'blank' },
       { name: '搜索栏', componentsName: 'searchbar' },
       { name: '轮播图', componentsName: 'swiper' },
+      { name: '功能入口', componentsName: 'grid' },
     ],
   },
 ]

@@ -19,6 +19,7 @@ export default {
   left: 100%;
   padding: 15px;
   margin-left: 20px;
+  margin-bottom: 80px;
   width: 380px;
   background: #fff;
   transition: top 0.5s;

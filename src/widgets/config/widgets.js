@@ -90,10 +90,19 @@ const widgets = {
       title: '标题',
       // 图片url
       picUrl: null,
+      // 功能
       functional: {
         id: 'none',
       },
     }),
+    style: {
+      ...margin,
+    },
+  },
+  // 功能入口
+  grid: {
+    id: 'grid',
+    data: [],
     style: {
       ...margin,
     },

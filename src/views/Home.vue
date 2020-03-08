@@ -91,7 +91,20 @@
     </page-container>
 
     <div class="options-bar">
-      <el-button type="primary" size="mini" :loading="saveLoading" @click.native="handleSave">保存并继续</el-button>
+      <el-button
+        type="primary"
+        plain
+        size="mini"
+        :loading="saveLoading"
+        @click.native="handleSave"
+      >保存</el-button>
+      <el-popover placement="top" trigger="click" width="100">
+        <div class="popper-qrcode">
+          <canvas id="qrcode"></canvas>
+          <div class="qrcode-tips" style="margin-bottom: 10px;">手机扫码预览效果</div>
+        </div>
+        <el-button type="primary" size="mini" slot="reference">预览</el-button>
+      </el-popover>
     </div>
   </div>
 </template>
@@ -100,6 +113,7 @@
 import Draggable from 'vuedraggable'
 import { mapGetters, mapActions } from 'vuex'
 import md5 from 'md5'
+import QRCode from 'qrcode'
 import componentsConfig from '@/widgets/config/components'
 import widgetsConfig from '@/widgets/config/widgets'
 import { getHash } from '@/utils/index'
@@ -138,7 +152,11 @@ export default {
   },
 
   created() {
-    this.requestList()
+    this.requestList().then(() => {
+      this.$nextTick(() => {
+        this.renderQrcode()
+      })
+    })
   },
 
   data() {
@@ -267,9 +285,10 @@ export default {
       //   // 请求到的数据更新到store
       //   this.setList(list)
       // }, 200)
-      this._request.get('/api/list').then(res => {
+      return this._request.get('/api/list').then(res => {
         const list = res.data.list
         this.setList(list)
+        return list
       })
     },
     // 保存数据 action
@@ -285,6 +304,13 @@ export default {
         .then(res => {
           this.saveLoading = false
         })
+    },
+    renderQrcode() {
+      const url = 'http://192.168.31.116:8081/'
+      QRCode.toCanvas(document.getElementById('qrcode'), url, function(error) {
+        if (error) console.error(error)
+        console.log('renderQrcode success!')
+      })
     }
   }
 }
@@ -308,7 +334,8 @@ export default {
   .widgets-lib {
     padding: 0 5px 0 10px;
     &.widget-lib-bottom {
-      margin: 20px 0;
+      margin-bottom: 20px;
+      border-top: 1px dashed #ccc;
     }
   }
   .widgets-lib__title {
@@ -356,6 +383,10 @@ export default {
     padding: 20px 0;
     background: #fff;
     text-align: center;
+    box-shadow: 0 -3px 5px #eee;
+    button {
+      margin: 0 10px;
+    }
   }
 }
 
@@ -385,5 +416,9 @@ export default {
       }
     }
   }
+}
+
+.popper-qrcode {
+  text-align: center;
 }
 </style>

@@ -81,22 +81,10 @@
 </template>
 
 <script>
-import { FormItem } from '@/widgets/form/index'
+import mixins from '../mixins'
 export default {
   name: 'searchbar-setting',
-  components: {
-    [FormItem.name]: FormItem
-  },
-  data() {
-    return {
-      activeName: 'first'
-    }
-  },
-  props: {
-    value: {
-      type: Object
-    }
-  }
+  mixins: [mixins]
 }
 </script>
 
