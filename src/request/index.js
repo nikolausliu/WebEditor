@@ -1,37 +1,55 @@
-const baseUrl = 'http://localhost:3000'
+import qs from 'qs'
+import axios from 'axios'
 
-const request = {
-  baseUrl,
-  get(url, data, options) {
-    const opts = {
-      method: 'GET',
-      body: JSON.stringify(data),
-      headers: Object.assign(
-        {},
-        { 'Content-Type': 'application/json' },
-        (options && options.headers) || {}
-      ),
-    }
-    const _url = url.startsWith('http') ? 'url' : baseUrl + url
-    return fetch(_url, opts).then(response => {
-      return response.json()
-    })
+const isDev = process.env.NODE_ENV !== 'production'
+const localUrl = 'http://192.168.31.116:3000'
+const aliyunUrl = 'http://47.102.149.181:3001'
+axios.defaults.baseURL = isDev ? aliyunUrl : ''
+
+axios.interceptors.request.use(
+  config => {
+    return config
   },
-  post(url, data, options) {
-    const opts = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: Object.assign(
-        {},
-        { 'Content-Type': 'application/json' },
-        (options && options.headers) || {}
-      ),
+  function(error) {
+    return Promise.reject(error)
+  }
+)
+
+axios.interceptors.response.use(
+  res => {
+    const { data, status } = res
+    if (status !== 200) {
+      return Promise.reject(data)
     }
-    const _url = url.startsWith('http') ? 'url' : baseUrl + url
-    return fetch(_url, opts).then(response => {
-      return response.json()
-    })
+    return data
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)
+
+export default {
+  baseURL: axios.defaults.baseURL,
+  get(url, params = {}, options = {}) {
+    const temp = Object.assign({}, { params: params }, options)
+    return axios.get(url, temp)
+  },
+  post(url, data = {}, options = {}) {
+    return axios.post(
+      url,
+      qs.stringify(data),
+      Object.assign(
+        {},
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        },
+        options || {}
+      )
+    )
+  },
+  axios(data = {}) {
+    return axios(data)
   },
 }
-
-export default request

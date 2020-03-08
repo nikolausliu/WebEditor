@@ -47,5 +47,5 @@ app.post('/api/list', (req, res) => {
 
 const port = 3000
 const server = app.listen(port, () => {
-  console.log(`http://localhost:${port}`)
+  console.log(`http://0.0.0.0:${port}`)
 })
