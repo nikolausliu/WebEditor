@@ -1,4 +1,6 @@
 import PageContainer from './PageContainer/index.vue'
-import WidgetsPanel from './WidgetsPanel/index.vue'
+import WidgetHandler from './WidgetHandler/index.vue'
+import WidgetDialog from './WidgetDialog/index.vue'
+import SingleUpload from './SingleUpload/index.vue'
 
-export { PageContainer, WidgetsPanel }
+export { PageContainer, WidgetHandler, WidgetDialog, SingleUpload }

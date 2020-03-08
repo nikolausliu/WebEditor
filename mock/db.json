@@ -1,0 +1,114 @@
+{
+	"list": [
+		{
+			"id": "searchbar",
+			"data": {
+				"placeholder": "搜索商品"
+			},
+			"style": {
+				"marginTop": 0,
+				"marginRight": 0,
+				"marginBottom": 0,
+				"marginLeft": 0,
+				"shape": "round",
+				"inputHeight": 40,
+				"backgroundColor": "#f9f9f9",
+				"inputBackgroundColor": "#ffffff"
+			},
+			"hash": "a90250dbe39ae0b94b82e7b8e0508f47"
+		},
+		{
+			"id": "swiper",
+			"data": [
+				{
+					"title": "标题",
+					"picUrl": null,
+					"functional": {
+						"id": "link",
+						"value": {
+							"url": "1234"
+						}
+					}
+				},
+				{
+					"title": "标题",
+					"picUrl": null,
+					"functional": {
+						"id": "none"
+					}
+				}
+			],
+			"style": {
+				"marginTop": 0,
+				"marginRight": 0,
+				"marginBottom": 0,
+				"marginLeft": 0
+			},
+			"hash": "628396ed93023907f3659a465f0cf5f5"
+		},
+		{
+			"id": "blank",
+			"style": {
+				"height": 10,
+				"backgroundColor": null
+			},
+			"hash": "aa9985fb852ff71c03c9a599cbc75bea"
+		},
+		{
+			"id": "text",
+			"data": {
+				"title": "这是一段文本这是一段文本这是一段文本,这是一段文本这是一段文本这是一段文本,这是一段文本这是一段文本这是一段文本,这是一段文本这是一段文本这是一段文本"
+			},
+			"style": {
+				"color": "#FFFFFF",
+				"backgroundColor": "#FF6F00",
+				"background": null,
+				"align": "left",
+				"fontSize": 12,
+				"lineHeight": 16,
+				"marginTop": 0,
+				"marginRight": 0,
+				"marginBottom": 0,
+				"marginLeft": 0,
+				"paddingTop": 10,
+				"paddingRight": 10,
+				"paddingBottom": 10,
+				"paddingLeft": 10
+			},
+			"hash": "b1e2bb35339a887157917f9c7000b055"
+		},
+		{
+			"id": "swiper",
+			"data": [
+				{
+					"title": "标题",
+					"picUrl": null,
+					"functional": {
+						"id": "none"
+					}
+				},
+				{
+					"title": "标题",
+					"picUrl": null,
+					"functional": {
+						"id": "none"
+					}
+				},
+				{
+					"title": "标题",
+					"picUrl": null,
+					"functional": {
+						"id": "none"
+					}
+				}
+			],
+			"style": {
+				"marginTop": 0,
+				"marginRight": 0,
+				"marginBottom": 0,
+				"marginLeft": 0
+			},
+			"hash": "9511e6d1c2ec4da47bfad5e3bc4afd01"
+		}
+	]
+}
