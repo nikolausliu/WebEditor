@@ -248,9 +248,10 @@ export default {
     },
     // 从模板中删除某个组件
     handleDelete(index) {
-      this.deleteWidget(index)
-      this.$nextTick(() => {
-        this.setTop()
+      this.deleteWidget(index).then(() => {
+        setTimeout(() => {
+          this.setTop()
+        }, 50)
       })
     },
     // 从配置中获取组件默认配置数据
