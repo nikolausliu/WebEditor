@@ -27,10 +27,22 @@
                 <text-preview v-if="widget.id === 'text'" :value="widget"></text-preview>
                 <!-- blank 辅助空白 -->
                 <blank-preview v-if="widget.id === 'blank'" :value="widget"></blank-preview>
+                <!-- line 辅助线 -->
+                <line-preview v-if="widget.id === 'line'" :value="widget"></line-preview>
                 <!-- searchbar 搜索栏 -->
                 <searchbar-preview v-if="widget.id === 'searchbar'" :value="widget"></searchbar-preview>
                 <!-- swiper 轮播图 -->
                 <swiper-preview v-if="widget.id === 'swiper'" :value="widget"></swiper-preview>
+                <!-- grid 功能入口 -->
+                <grid-preview v-if="widget.id === 'grid'" :value="widget"></grid-preview>
+                <!-- title 标题 -->
+                <title-preview v-if="widget.id === 'title'" :value="widget"></title-preview>
+                <!-- pictures 图片组 -->
+                <pictures-preview v-if="widget.id === 'pictures'" :value="widget"></pictures-preview>
+                <!-- toolbar 工具栏 -->
+                <toolbar-preview v-if="widget.id === 'toolbar'" :value="widget"></toolbar-preview>
+                <!-- products 产品列表 -->
+                <products-preview v-if="widget.id === 'products'" :value="widget"></products-preview>
               </div>
             </widget-handler>
           </transition-group>
@@ -60,6 +72,8 @@
             <text-setting v-if="activeWidget.id === 'text'" :value="activeWidget"></text-setting>
             <!-- blank 辅助空白 -->
             <blank-setting v-if="activeWidget.id === 'blank'" :value="activeWidget"></blank-setting>
+            <!-- line 辅助线 -->
+            <line-setting v-if="activeWidget.id === 'line'" :value="activeWidget"></line-setting>
             <!-- searchbar 搜索栏 -->
             <searchbar-setting v-if="activeWidget.id === 'searchbar'" :value="activeWidget"></searchbar-setting>
             <!-- swiper 搜索栏 -->
@@ -68,6 +82,28 @@
               :value="activeWidget"
               :widget-index="active"
             ></swiper-setting>
+            <!-- grid 功能入口 -->
+            <grid-setting
+              v-if="activeWidget.id === 'grid'"
+              :value="activeWidget"
+              :widget-index="active"
+            ></grid-setting>
+            <!-- title 搜索栏 -->
+            <title-setting v-if="activeWidget.id === 'title'" :value="activeWidget"></title-setting>
+            <!-- pictures 图片组 -->
+            <pictures-setting
+              v-if="activeWidget.id === 'pictures'"
+              :value="activeWidget"
+              :widget-index="active"
+            ></pictures-setting>
+            <!-- toolbar 工具栏 -->
+            <toolbar-setting v-if="activeWidget.id === 'toolbar'" :value="activeWidget"></toolbar-setting>
+            <!-- products 产品列表 -->
+            <products-setting
+              v-if="activeWidget.id === 'products'"
+              :value="activeWidget"
+              :widget-index="active"
+            ></products-setting>
           </div>
         </widget-dialog>
       </div>
@@ -121,14 +157,26 @@ import { PageContainer, WidgetHandler, WidgetDialog } from '@/components/index'
 import {
   TextPreview,
   BlankPreview,
+  LinePreview,
   SearchbarPreview,
-  SwiperPreview
+  SwiperPreview,
+  GridPreview,
+  TitlePreview,
+  PicturesPreview,
+  ToolbarPreview,
+  ProductsPreview
 } from '@/widgets/preview/index'
 import {
   TextSetting,
   BlankSetting,
   SearchbarSetting,
-  SwiperSetting
+  SwiperSetting,
+  GridSetting,
+  TitleSetting,
+  PicturesSetting,
+  LineSetting,
+  ToolbarSetting,
+  ProductsSetting
 } from '@/widgets/setting/index'
 
 export default {
@@ -142,13 +190,25 @@ export default {
     // preview组件
     [TextPreview.name]: TextPreview,
     [BlankPreview.name]: BlankPreview,
+    [LinePreview.name]: LinePreview,
     [SearchbarPreview.name]: SearchbarPreview,
     [SwiperPreview.name]: SwiperPreview,
+    [GridPreview.name]: GridPreview,
+    [TitlePreview.name]: TitlePreview,
+    [PicturesPreview.name]: PicturesPreview,
+    [ToolbarPreview.name]: ToolbarPreview,
+    [ProductsPreview.name]: ProductsPreview,
     // setting组件
     [TextSetting.name]: TextSetting,
     [BlankSetting.name]: BlankSetting,
     [SearchbarSetting.name]: SearchbarSetting,
-    [SwiperSetting.name]: SwiperSetting
+    [SwiperSetting.name]: SwiperSetting,
+    [GridSetting.name]: GridSetting,
+    [TitleSetting.name]: TitleSetting,
+    [PicturesSetting.name]: PicturesSetting,
+    [LineSetting.name]: LineSetting,
+    [ToolbarSetting.name]: ToolbarSetting,
+    [ProductsSetting.name]: ProductsSetting
   },
 
   created() {
@@ -306,7 +366,8 @@ export default {
         })
     },
     renderQrcode() {
-      const url = 'http://192.168.31.116:8081/'
+      // const url = 'http://192.168.31.116:8081/'
+      const url = 'http://192.168.2.234:8081/'
       QRCode.toCanvas(document.getElementById('qrcode'), url, function(error) {
         if (error) console.error(error)
         console.log('renderQrcode success!')
@@ -388,15 +449,6 @@ export default {
       margin: 0 10px;
     }
   }
-}
-
-// draggable
-.flip-list-move {
-  transition: transform 0.5s;
-}
-.ghost {
-  opacity: 0.5;
-  background: #c8ebfb;
 }
 </style>
 

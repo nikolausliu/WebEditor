@@ -7,8 +7,8 @@
           <el-input-number
             controls-position="right"
             size="small"
-            :min="0"
-            :max="Infinity"
+            :min="1"
+            :max="100"
             v-model="value.style.height"
           ></el-input-number>
         </form-item>

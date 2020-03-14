@@ -64,6 +64,18 @@ const widgets = {
       backgroundColor: null,
     },
   },
+  // 辅助线
+  line: {
+    id: 'line',
+    style: {
+      borderWidth: 1,
+      borderColor: '#ccc',
+      // 边框样式: solid | dashed | dotted
+      borderStyle: 'solid',
+      marginLeft: 0,
+      marginRight: 0,
+    },
+  },
   // 搜索栏
   searchbar: {
     id: 'searchbar',
@@ -102,9 +114,107 @@ const widgets = {
   // 功能入口
   grid: {
     id: 'grid',
-    data: [],
+    data: Array(3).fill({
+      title: '标题',
+      icon: null,
+      functional: {
+        id: 'none',
+      },
+    }),
     style: {
       ...margin,
+      color: color.color,
+      backgroundColor: null,
+      // 列数
+      cols: 3,
+      iconWidth: 50,
+      iconHeight: 50,
+    },
+  },
+  // 标题
+  title: {
+    id: 'title',
+    data: {
+      title: '标题',
+      icon: null,
+      moreTitle: '更多',
+      moreIcon: null,
+      functional: {
+        id: 'none',
+      },
+    },
+    style: {
+      ...margin,
+      paddingLeft: 10,
+      paddingRight: 10,
+      // 布局: {spaceBetween: '两端可显示标题与更多（更多为可选项）', center: '只居中显示标题'}
+      layout: 'spaceBetween',
+      height: 44,
+      backgroundColor: null,
+      fontSize: 14,
+      color: '#333',
+      moreFontSize: 12,
+      moreColor: '#999',
+    },
+  },
+  // 图片组
+  pictures: {
+    id: 'pictures',
+    data: Array(1).fill({
+      title: '标题',
+      img: null,
+      functional: {
+        id: 'none',
+      },
+    }),
+    style: {
+      ...margin,
+      backgroundColor: null,
+      cols: 1,
+      // 图片之间间距
+      space: 5,
+    },
+  },
+  // 工具栏
+  toolbar: {
+    id: 'toolbar',
+    data: {},
+    style: {
+      ...margin,
+      paddingTop: 10,
+      paddingRight: 10,
+      paddingBottom: 10,
+      paddingLeft: 10,
+      backgroundColor: null,
+      color: '#333',
+    },
+  },
+  // 商品列表
+  products: {
+    id: 'products',
+    data: Array(2).fill({
+      title: '标题',
+      subtitle: '副标题',
+      img: null,
+      buyicon: null,
+      price: '0.00',
+      functional: {
+        id: 'none',
+      },
+    }),
+    style: {
+      ...margin,
+      paddingTop: 0,
+      paddingBottom: 0,
+      paddingTop: 15,
+      paddingRight: 15,
+      paddingBottom: 15,
+      paddingLeft: 15,
+      backgroundColor: null,
+      // 布局: {1: 一行1个, 2: 一行2个}
+      layout: 1,
+      // 边框类型: {'border': '边框', 'shadow': '阴影', 'none': '无边框' }
+      borderType: 'border',
     },
   },
 }

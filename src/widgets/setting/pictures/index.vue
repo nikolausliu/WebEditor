@@ -1,6 +1,6 @@
 <template>
-  <div class="swiper-setting">
-    <div class="setting-title">轮播图</div>
+  <div class="pictures-setting">
+    <div class="setting-title">图片组</div>
     <el-tabs v-model="activeName">
       <el-tab-pane label="组件数据" name="first">
         <draggable
@@ -18,11 +18,8 @@
                 :widget-index="widgetIndex"
                 :item-index="index"
               >
-                <form-item label="标题:">
-                  <el-input v-model="item.title" size="mini"></el-input>
-                </form-item>
                 <form-item label="图片:">
-                  <single-upload class="single-upload" v-model="item.picUrl"></single-upload>
+                  <single-upload class="single-upload" v-model="item.img"></single-upload>
                 </form-item>
                 <func-set v-model="item.functional"></func-set>
               </setting-data-item>
@@ -33,6 +30,25 @@
       </el-tab-pane>
 
       <el-tab-pane label="组件样式" name="second">
+        <form-item label="背景颜色:">
+          <el-color-picker v-model="value.style.backgroundColor"></el-color-picker>
+        </form-item>
+        <form-item label="列数:">
+          <el-select size="mini" placeholder="请选择列数" v-model="value.style.cols">
+            <el-option label="1" :value="1"></el-option>
+            <el-option label="2" :value="2"></el-option>
+            <el-option label="3" :value="3"></el-option>
+          </el-select>
+        </form-item>
+        <form-item label="图片间距:">
+          <el-input-number
+            controls-position="right"
+            size="small"
+            :min="0"
+            :max="20"
+            v-model="value.style.space"
+          ></el-input-number>
+        </form-item>
         <form-item label="外边距:">
           <el-row class="multi-row">
             <el-col :span="12">
@@ -85,25 +101,23 @@
 </template>
 
 <script>
-import mixins from '../mixins'
 import { mapActions } from 'vuex'
+import mixins from '../mixins'
 import Draggable from 'vuedraggable'
 import { SingleUpload } from '@/components/index'
 import { SettingDataItem, FuncSet } from '@/widgets/form/index'
 
 export default {
-  name: 'swiper-setting',
+  name: 'pictures-setting',
   mixins: [mixins],
   components: {
     [Draggable.name]: Draggable,
-    [SingleUpload.name]: SingleUpload,
     [SettingDataItem.name]: SettingDataItem,
+    [SingleUpload.name]: SingleUpload,
     [FuncSet.name]: FuncSet
   },
   data() {
-    return {
-      dragging: false
-    }
+    return {}
   },
   methods: {
     ...mapActions({
@@ -117,7 +131,10 @@ export default {
         key: this.widgetIndex,
         value: {
           title: '标题',
-          picUrl: null
+          img: null,
+          functional: {
+            id: 'none'
+          }
         }
       })
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="swiper-preview" :style="style">
-    <el-carousel arrow="never" :height="height" v-show="value.data.length">
+    <el-carousel arrow="never" :height="height" v-if="value.data.length">
       <el-carousel-item v-for="(item, index) in value.data" :key="index">
         <img
           ref="img"
@@ -11,14 +11,18 @@
         />
       </el-carousel-item>
     </el-carousel>
-    <div class="no-data-tips" v-show="!value.data.length">请点击并添加轮播图片</div>
+    <no-data-tips v-if="!value.data.length">请点击该区域并在右侧面板添加数据</no-data-tips>
   </div>
 </template>
 
 <script>
 import { defaultImageUrl } from '../../config/base'
+import { NoDataTips } from '../../form/index'
 export default {
   name: 'swiper-preview',
+  components: {
+    [NoDataTips.name]: NoDataTips
+  },
   data() {
     return {
       defaultImageUrl,
@@ -70,13 +74,6 @@ export default {
 }
 .el-carousel__item.is-active {
   z-index: 1;
-}
-.no-data-tips {
-  height: 100px;
-  line-height: 100px;
-  text-align: center;
-  background-color: #ebf8fd;
-  color: #88c4dc;
 }
 </style>
 <style lang="less">

@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import request from '@/request/index'
 export default {
   name: 'single-upload',
   data() {
@@ -35,15 +36,18 @@ export default {
     },
     action: {
       type: String,
-      default: ''
+      default: 'https://sell.dev.vyicoo.com/pub/upload/index'
+      // default: 'http://47.102.149.181:3001/api/check'
     },
     name: {
       type: String,
-      default: ''
+      default: 'file'
     },
     headers: {
       type: Object,
-      default: () => ({})
+      default: () => ({
+        authorization: `Bearer PUC08D368AD2BFCCA220`
+      })
     }
   },
   watch: {
@@ -56,8 +60,24 @@ export default {
   },
   methods: {
     handleSuccess(res, file) {
-      // URL.createObjectURL() 静态方法会创建一个 DOMString，其中包含一个表示参数中给出的对象的URL。这个 URL 的生命周期和创建它的窗口中的 document 绑定。这个新的URL 对象表示指定的 File 对象或 Blob 对象
-      this.imageUrl = URL.createObjectURL(file.raw)
+      console.log(res, file)
+      /*
+       * URL.createObjectURL() 静态方法会创建一个 DOMString，其中包含一个表示参数中给出的对象的URL。这个 URL 的生命周期和创建它的窗口中的 document 绑定。这个新的URL 对象表示指定的 File 对象或 Blob 对象
+       */
+      // this.imageUrl = URL.createObjectURL(file.raw)
+
+      /**
+       * base64后的图片url太大了
+       */
+      // const _this = this
+      // const reader = new FileReader()
+      // reader.readAsDataURL(file.raw)
+      // reader.onload = function(e) {
+      //   _this.imageUrl = e.target.result
+      //   _this.$emit('input', _this.imageUrl)
+      // }
+
+      this.imageUrl = res.data.assets_domain + res.data.path
       this.$emit('input', this.imageUrl)
     },
     handleError() {},
@@ -72,6 +92,7 @@ export default {
 <style lang="less" scoped>
 .single-upload {
   position: relative;
+  display: inline-block;
   .uploader {
     position: relative;
     border: 1px dashed #d9d9d9;

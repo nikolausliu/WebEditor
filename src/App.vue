@@ -17,4 +17,9 @@ html {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
 </style>

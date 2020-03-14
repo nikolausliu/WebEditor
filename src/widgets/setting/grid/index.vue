@@ -1,6 +1,6 @@
 <template>
-  <div class="swiper-setting">
-    <div class="setting-title">轮播图</div>
+  <div class="grid-setting">
+    <div class="setting-title">功能入口</div>
     <el-tabs v-model="activeName">
       <el-tab-pane label="组件数据" name="first">
         <draggable
@@ -22,7 +22,7 @@
                   <el-input v-model="item.title" size="mini"></el-input>
                 </form-item>
                 <form-item label="图片:">
-                  <single-upload class="single-upload" v-model="item.picUrl"></single-upload>
+                  <single-upload class="single-upload" v-model="item.icon"></single-upload>
                 </form-item>
                 <func-set v-model="item.functional"></func-set>
               </setting-data-item>
@@ -33,6 +33,43 @@
       </el-tab-pane>
 
       <el-tab-pane label="组件样式" name="second">
+        <form-item label="背景颜色:">
+          <el-color-picker v-model="value.style.backgroundColor"></el-color-picker>
+        </form-item>
+        <form-item label="标题颜色:">
+          <el-color-picker v-model="value.style.color"></el-color-picker>
+        </form-item>
+        <form-item label="列数:">
+          <el-select size="mini" placeholder="请选择列数" v-model="value.style.cols">
+            <el-option label="3" :value="3"></el-option>
+            <el-option label="4" :value="4"></el-option>
+            <el-option label="5" :value="5"></el-option>
+          </el-select>
+        </form-item>
+        <form-item label="图片大小:">
+          <el-row class="multi-row">
+            <el-col :span="12">
+              <span class="multi-row__label">宽</span>
+              <el-input-number
+                controls-position="right"
+                size="small"
+                :min="20"
+                :max="80"
+                v-model="value.style.iconWidth"
+              ></el-input-number>
+            </el-col>
+            <el-col :span="12">
+              <span class="multi-row__label">高</span>
+              <el-input-number
+                controls-position="right"
+                size="small"
+                :min="20"
+                :max="80"
+                v-model="value.style.iconHeight"
+              ></el-input-number>
+            </el-col>
+          </el-row>
+        </form-item>
         <form-item label="外边距:">
           <el-row class="multi-row">
             <el-col :span="12">
@@ -85,25 +122,23 @@
 </template>
 
 <script>
-import mixins from '../mixins'
 import { mapActions } from 'vuex'
+import mixins from '../mixins'
 import Draggable from 'vuedraggable'
 import { SingleUpload } from '@/components/index'
 import { SettingDataItem, FuncSet } from '@/widgets/form/index'
 
 export default {
-  name: 'swiper-setting',
+  name: 'grid-setting',
   mixins: [mixins],
   components: {
     [Draggable.name]: Draggable,
-    [SingleUpload.name]: SingleUpload,
     [SettingDataItem.name]: SettingDataItem,
+    [SingleUpload.name]: SingleUpload,
     [FuncSet.name]: FuncSet
   },
   data() {
-    return {
-      dragging: false
-    }
+    return {}
   },
   methods: {
     ...mapActions({
@@ -117,7 +152,10 @@ export default {
         key: this.widgetIndex,
         value: {
           title: '标题',
-          picUrl: null
+          icon: null,
+          functional: {
+            id: 'none'
+          }
         }
       })
     }

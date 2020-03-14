@@ -29,7 +29,7 @@ axios.interceptors.response.use(
 )
 
 export default {
-  baseURL: axios.defaults.baseURL,
+  baseUrl: axios.defaults.baseURL,
   get(url, params = {}, options = {}) {
     const temp = Object.assign({}, { params: params }, options)
     return axios.get(url, temp)
