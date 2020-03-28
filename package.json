@@ -6,7 +6,8 @@
   "scripts": {
     "mock": "node ./mock/server",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -24,6 +25,7 @@
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
     "express": "^4.17.1",
+    "gh-pages": "^2.2.0",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "vue-template-compiler": "^2.6.10"

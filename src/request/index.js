@@ -4,7 +4,7 @@ import axios from 'axios'
 const isDev = process.env.NODE_ENV !== 'production'
 const localUrl = 'http://192.168.31.116:3000'
 const aliyunUrl = 'http://47.102.149.181:3001'
-axios.defaults.baseURL = isDev ? aliyunUrl : ''
+axios.defaults.baseURL = isDev ? aliyunUrl : aliyunUrl
 
 axios.interceptors.request.use(
   config => {
@@ -30,6 +30,7 @@ axios.interceptors.response.use(
 
 export default {
   baseUrl: axios.defaults.baseURL,
+  uploadUrl: 'http://47.102.149.181:3002/api/qiniu/upload',
   get(url, params = {}, options = {}) {
     const temp = Object.assign({}, { params: params }, options)
     return axios.get(url, temp)

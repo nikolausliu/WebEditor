@@ -36,8 +36,7 @@ export default {
     },
     action: {
       type: String,
-      default: 'https://sell.dev.vyicoo.com/pub/upload/index'
-      // default: 'http://47.102.149.181:3001/api/check'
+      default: request.uploadUrl
     },
     name: {
       type: String,
@@ -45,9 +44,7 @@ export default {
     },
     headers: {
       type: Object,
-      default: () => ({
-        authorization: `Bearer PUC08D368AD2BFCCA220`
-      })
+      default: () => ({})
     }
   },
   watch: {

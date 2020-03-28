@@ -366,8 +366,7 @@ export default {
         })
     },
     renderQrcode() {
-      // const url = 'http://192.168.31.116:8081/'
-      const url = 'http://192.168.2.234:8081/'
+      const url = 'http://nikolausliu.top/WebEditorH5/'
       QRCode.toCanvas(document.getElementById('qrcode'), url, function(error) {
         if (error) console.error(error)
         console.log('renderQrcode success!')
