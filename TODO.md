@@ -1,4 +1,4 @@
 - [x] 利用本地 express 服务搭建简单接口服务
 - [x] 本地接口服务部署到阿里云服务器 ECS 以供外网访问
-- [ ] 对接七牛云存储 SDK
+- [x] 使用七牛云存储做图片上传
 - [ ] 利用 Github Action 实现每次 commit 自动 build 并部署到 github-pages 分支
