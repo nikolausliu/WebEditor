@@ -22,12 +22,12 @@
     "vuex": "^3.1.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.1.0",
-    "@vue/cli-service": "^4.1.0",
+    "@vue/cli-plugin-babel": "^4.5.19",
+    "@vue/cli-service": "^5.0.8",
     "express": "^4.17.1",
     "gh-pages": "^2.2.0",
     "less": "^3.0.4",
-    "less-loader": "^5.0.0",
+    "less-loader": "^11.1.0",
     "vue-template-compiler": "^2.6.10"
   }
 }
